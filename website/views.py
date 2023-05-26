@@ -12,19 +12,22 @@ def home(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "You Have Been Logged In!")
+            messages.success(request, "Ingreso exitoso!")
             return redirect('home')
         else:
-            messages.success(request, "There WAS AN Error Logger")
+            messages.success(request, "Error loguese de nuevo, intente de nuevo")
             return redirect('home')
     else:
         return render(request, 'home.html',{})
 
-def login_user(request):
-    pass
-
 def logout_user(request):
-    pass
+    logout(request)
+    messages.success(request, "salio exitosamente de la session")
+    return redirect('home')
+
+def register_user(request):
+    return render(request, 'register.html', {})
+
 
 
 
