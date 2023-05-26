@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+      {{ customer_record.first_name }} {{ customer_record.last_name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+                {{ customer_record.email }}<br/>
+                {{ customer_record.address }}<br/>
+                {{ customer_record.city }}<br/>
+                {{ customer_record.state }}<br/>
+                {{ customer_record.zipcode }}<br/>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

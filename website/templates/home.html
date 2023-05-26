@@ -1,10 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-md-6 offset-md-3">
-    {% if user.is_authenticated %}
-    <h1>Listado de items</h1>
+
+{% if user.is_authenticated %}
+
+<h1>Records...</h1>
+    <table class="table table-striped table-hover
+    tablet-bordered table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Ciudad</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Codigo ZIP</th>
+
+        </tr>
+      </thead>
+        <tbody>
+
+      {% if records %}
+         {% for record in records %}
+            <tr>
+                <td><a href="{% url 'record' record.id %}">{{ record.id }}<a/></td>
+                <td>{{ record.first_name }}</td>
+                <td>{{ record.last_name }}</td>
+                <td>{{ record.email }}</td>
+                <td>{{ record.address }}</td>
+                <td>{{ record.city }}</td>
+                <td>{{ record.state }}</td>
+                <td>{{ record.zipcode }}</td>
+            </tr>
+         {% endfor %}
+      {% endif %}
+
+        </tbody>
+    </table>
+
     {% else %}
+<div class="col-md-6 offset-md-3">
     <h1>Login</h1>
     <br/>
     <form method="POST" action="{% url 'home' %}">
@@ -21,8 +58,8 @@
           <button type="submit" class="btn btn-secondary">Login</button>
         </form>
     </form>
-
+<div/>
     {% endif %}
-</div>
+
 {% endblock %}
 
