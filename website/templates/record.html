@@ -2,18 +2,44 @@
 
 {% block content %}
 <div class="card">
-  <div class="card-header">
-      {{ customer_record.first_name }} {{ customer_record.last_name }}
+  <div class="card-header"><strong>
+      {{ customer_record.first_name }}
+      {{ customer_record.last_name }}</strong>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-                {{ customer_record.email }}<br/>
-                {{ customer_record.address }}<br/>
-                {{ customer_record.city }}<br/>
-                {{ customer_record.state }}<br/>
-                {{ customer_record.zipcode }}<br/>
+    <p class="card-text">
+        <strong>Email:</strong>{{ customer_record.email }}
+    </p>
+    <p class="card-text">
+        <strong>Telefono:</strong>{{ customer_record.phone }}
+    </p>
+    <p class="card-text">
+        <strong>Direccion:</strong>{{ customer_record.address }}
+    </p>
+    <p class="card-text">
+        <strong>Ciudad:</strong>{{ customer_record.city }}
+    </p>
+    <p class="card-text">
+        <strong>Departamento:</strong>{{ customer_record.state }}
+    </p>
+    <p class="card-text">
+        <strong>Zipcode:</strong>{{ customer_record.zipcode }}
+    </p>
+    <p class="card-text">
+        <strong>Create At:</strong>{{ customer_record.created_at }}
+    </p>
+    <p class="card-text">
+        <strong>ID:</strong>{{ customer_record.id }}
+    </p>
+
+
   </div>
 </div>
+
+<br><br>
+<a href="{% url 'home' %}" class="btn btn-secondary" >Atras</a>
+<a href="{% url 'delete_record' customer_record.id %}" class="btn btn-secondary" >Borrar</a>
+<a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary" >Actualizar Registro</a>
 
 
 
