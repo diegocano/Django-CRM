@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, AddRecordForm
-from .models import Record
+from .forms import SignUpForm, AddRecordForm, DbResource
+from .models import Record ,articul
+from tablib import Dataset
 
 
 def home(request):
@@ -92,6 +93,23 @@ def update_record(request, pk):
     else:
         messages.success(request, "Record Updated......")
         return redirect('home')
+
+def importar(request):
+   articuls = articul.objects.all()
+   #template = loader.get_template('importar.html')
+   if request.method == 'POST':
+     db_resource = DbResource()
+     dataset = Dataset()
+     print(dataset)
+     nuevos_articulos = request.FILES['xlsfile']
+     print(nuevos_articulos)
+     imported_data = dataset.load(nuevos_articulos.read())
+     print(dataset)
+     result = db_resource.import_data(dataset, dry_run=True) # Test the data import
+     print(result.has_errors())
+     if not result.has_errors():
+       db_resource.import_data(dataset, dry_run=False) # Actually import now
+   return render(request, 'importar.html', {'articuls':articuls})
 
 
 

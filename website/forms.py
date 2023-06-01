@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Record
+from .models import Record, articul
+from import_export import resources
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -46,6 +47,8 @@ class AddRecordForm(forms.ModelForm):
         exclude = ("user",)
 
 
-
+class DbResource(resources.ModelResource):
+    class Meta:
+        model = articul
 
 

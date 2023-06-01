@@ -13,3 +13,13 @@ class Record(models.Model):
 
     def __str__(self):
         return(f"{self.first_name} {self.last_name}")
+class articul(models.Model):
+    item = models.CharField(max_length=10000)
+    detalle = models.CharField(max_length=200)
+    unidad = models.CharField(max_length=100)
+    lista = models.CharField(max_length=100)
+    cod_lista = models.CharField(max_length=100)
+    precio = models.IntegerField()
+
+    def __str__(self):
+        return(f"{self.detalle} {self.lista} {self.precio}")

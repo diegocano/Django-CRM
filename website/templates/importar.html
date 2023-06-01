@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br/>
+    <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="file" name="xlsfile">
+          <button type="submit" class="btn btn-secondary">Subir</button>
+    </form>
+    <br/>
+{% if user.is_authenticated %}
+<h1>Articulos...</h1>
+    <table class="table table-striped table-hover
+    tablet-bordered table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">unidad</th>
+          <th scope="col">lista</th>
+         <!-- <th scope="col">Codigo Lista</th> -->
+          <th scope="col">precio</th>
+         <!-- <th scope="col">id</th> -->
+
+        </tr>
+      </thead>
+        <tbody>
+
+      {% if articuls %}
+         {% for articul in articuls %}
+            <tr>
+
+                <td>{{ articul.item }}</td>
+                <td>{{ articul.detalle }}</td>
+                <td>{{ articul.unidad }}</td>
+                <td>{{ articul.lista }}</td>
+                <td>${{ articul.precio }}</td>
+               <!-- <td>{{ articul.id }}<a/></td> -->
+                <!-- <td>{{ articul.cod_lista }}</td> -->
+            </tr>
+         {% endfor %}
+      {% endif %}
+
+        </tbody>
+    </table>
+
+    {% endif %}
+
+{% endblock %}

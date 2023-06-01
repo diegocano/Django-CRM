@@ -14,8 +14,23 @@
         {% if user.is_authenticated %}
 
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">
+          Mostrar Usuarios</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'add_record' %}">
-          Add_record</a>
+          Crear Usuarios</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="">
+          Informe Cotizaciones</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'importar' %}">
+          Base de Datos</a>
         </li>
 
         <li class="nav-item">
@@ -24,10 +39,12 @@
         </li>
 
         {% else %}
+      <!--
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">
           Register</a>
-        </li>
+        </li> -->
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">
           login</a>
